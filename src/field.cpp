@@ -3,9 +3,11 @@
 bool field::make_move(int coord) {
     if (!is_movable(coord))
         return false;
+
     progress++;
-    map[coord] = team + 1;
     team = !team;
+
+    map[coord] = team + 1;
 
     return true;
 }
@@ -64,6 +66,10 @@ void field::get_map() {
         std::cout << map[i+6] << " ";
     }
     std::cout << std::endl;
+}
+
+int field::get_team() const {
+    return team;
 }
 
 field::field() = default;

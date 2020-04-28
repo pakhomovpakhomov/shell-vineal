@@ -2,40 +2,27 @@
 #include <iostream>
 
 #include "../include/field.h"
+#include "../include/UI.h"
+
+WINDOW *create_map();
+void destroy_win(WINDOW *local_win);
 
 int main()
 {
     field game;
+    UI tochka(game);
+    tochka.game_process();
 
-    while (!game.is_win()) {
-        int coord;
-        std::cout << "Делай ход: ";
-        std::cin >> coord;
-        std::cout << std::endl;
-        while (!game.make_move(coord)) {
-            std::cout << "Занято! Делай ход заново:";
-            std::cin >> coord;
-        }
-        game.get_map();
-    }
-
-    switch (game.is_win()) {
-        case 1: {
-            std::cout << "X - выиграл!";
-            break;
-        }
-        case 2: {
-            std::cout << "O - выиграл!";
-            break;
-        }
-        case 3: {
-            std::cout << "Никто не выиграл!";
-            break;
-        }
-        default: {
-            std::cout << "TODO";
-        }
-    }
 
     return 0;
 }
+
+
+
+/*WINDOW *create_newwin(int y, int x)
+{ WINDOW *local_win;
+    local_win = newwin(HEIGHT, WIDTH, STARTY, STARTX); // TODO: do const
+    box(local_win, 0 , 0);
+    wrefresh(local_win);
+    return local_win;
+}*/
